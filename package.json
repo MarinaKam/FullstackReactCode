@@ -1,0 +1,19 @@
+{
+  "name": "full-stak-react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server-start": "npm start --prefix server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarinaKam/FullstackReactCode.git"
+  },
+  "author": "Marie Kam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarinaKam/FullstackReactCode/issues"
+  },
+  "homepage": "https://github.com/MarinaKam/FullstackReactCode#readme"
+}

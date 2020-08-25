@@ -1,0 +1,13 @@
+# API keys and secrets
+.env
+
+/.idea
+.DS_Store
+
+# Dependency directory
+node_modules
+server/node_modules
+client/node_modules
+
+# Ignore built ts files
+server/dist/**/*
