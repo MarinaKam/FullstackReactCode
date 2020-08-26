@@ -9,8 +9,5 @@ node_modules
 server/node_modules
 client/node_modules
 
-# Ignore keys
-server/src/services/keys.js
-
 # Ignore built files
 server/dist/**/*
