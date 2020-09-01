@@ -7,7 +7,8 @@ const config = {
   google: {
     clientID: keys.clientID,
     clientSecret: keys.clientSecret,
-    callbackURL: '/auth/google/callback'
+    callbackURL: '/auth/google/callback',
+    proxy: true
   },
   mongoURI: keys.mongoURI,
   cookieKey: keys.cookieKey
