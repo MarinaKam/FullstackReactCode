@@ -11,3 +11,4 @@ client/node_modules
 
 # Ignore built files
 server/dist/**/*
+server/src/config/dev.js

@@ -10,7 +10,7 @@
   "scripts": {
     "start": "npm install --prefix server && npm start --prefix server",
     "server": "npm start --prefix server",
-    "dev": "concurrently --kill-others-on-fail \"npm start --prefix server\""
+    "dev": "npm start --prefix server"
   },
   "repository": {
     "type": "git",

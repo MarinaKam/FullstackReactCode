@@ -1,12 +1,22 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cookieSession = require('cookie-session');
+const passport = require('passport');
 const config = require('./services/config');
-require('./services/passport');
 require('./models/User');
+require('./services/passport');
 
 // const CLIENT_BUILD_PATH = path.join(__dirname, '../../client/build');
 // const PUBLIC_PATH = path.join(__dirname, '../public');
 const app = express();
+
+app.use(cookieSession({
+  maxAge: 30 * 24 * 60 * 60 * 1000,
+  keys: [ config.cookieKey ]
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 mongoose
   .connect(config.mongoURI, { useUnifiedTopology: true, useNewUrlParser: true })
