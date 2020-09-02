@@ -17,6 +17,8 @@ app.use(cookieSession({
 
 app.use(passport.initialize());
 app.use(passport.session());
+// app.use(express.static(PUBLIC_PATH));
+// app.use(express.static(CLIENT_BUILD_PATH));
 
 mongoose
   .connect(config.mongoURI, { useUnifiedTopology: true, useNewUrlParser: true })
