@@ -1,10 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { App } from './App';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
 import * as serviceWorker from './serviceWorker';
+import { App } from './App';
+import reducers from './store';
+
+const store = createStore(reducers, {}, applyMiddleware());
 
 ReactDOM.render(
-  <App />,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('root')
 );
 
