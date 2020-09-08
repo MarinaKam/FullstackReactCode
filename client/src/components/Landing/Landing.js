@@ -1,9 +1,9 @@
 import React from 'react';
 
-export const Dashboard = () => {
+export const Landing = () => {
   return (
     <div>
-
+      Landing
     </div>
   );
 };

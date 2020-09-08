@@ -2,34 +2,16 @@ import { createReduxReducer } from '../../hooks';
 import * as types from './types';
 
 const initialState = {
-  isLoading: false,
-  isAuthenticated: false,
-  authToken: ''
+  isFetched: false,
+  user: {}
 };
 
 export const reducer = createReduxReducer(initialState, {
-  [types.LOGIN_REQUEST]: (state) => {
+  [types.FETCH_USER_SUCCESS]: (state, payload) => {
     return {
       ...state,
-      isLoading: true,
-      isAuthenticated: false
-    };
-  },
-
-  [types.LOGIN_SUCCESS]: (state, { token }) => {
-    return {
-      ...state,
-      isLoading: false,
-      isAuthenticated: true,
-      authToken: token
-    };
-  },
-
-  [types.LOGIN_FAIL]: (state) => {
-    return {
-      ...state,
-      isLoading: false,
-      isAuthenticated: false
+      isFetched: true,
+      user: payload
     };
   }
 });
