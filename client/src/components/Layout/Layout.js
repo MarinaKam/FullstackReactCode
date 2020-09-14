@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
-import { Box, AppBar, Toolbar, Button, Link } from '@material-ui/core';
+import { Box, AppBar, Toolbar, Button, Link, Typography } from '@material-ui/core';
 import { mdiGoogle } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import { Payments } from '../Payments';
@@ -41,15 +41,23 @@ export const Layout = ({ children }) => {
                 <Payments />
               </Box>
 
-              <Button
-                color="inherit"
-                component={Link}
-                underline="none"
-                href="/api/logout"
-                startIcon={<SvgIcon><Icon path={mdiGoogle} /></SvgIcon>}
-              >
-                Log out
-              </Button>
+              <Box mr={2}>
+                <Typography variant="body1">
+                  Credits: {user.credits}$
+                </Typography>
+              </Box>
+
+              <Box color="warning.main">
+                <Button
+                  color="inherit"
+                  component={Link}
+                  underline="none"
+                  href="/api/logout"
+                  startIcon={<SvgIcon><Icon path={mdiGoogle} /></SvgIcon>}
+                >
+                  Log out
+                </Button>
+              </Box>
             </>
           }
         </Toolbar>
