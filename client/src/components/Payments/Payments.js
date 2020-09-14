@@ -1,11 +1,19 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import StripeCheckout from 'react-stripe-checkout';
 import { Button } from '@material-ui/core';
 import { mdiCreditCardPlusOutline } from '@mdi/js';
 import Icon from '@mdi/react';
+import { createToken } from '../../store/auth/operations';
 import { SvgIcon } from '../SvgIcon';
 
 export const Payments = () => {
+  const dispatch = useDispatch();
+
+  const handleCreateToken = (token) => {
+    dispatch(createToken(token));
+  };
+
   return (
     <StripeCheckout
       name="Emaily"
@@ -13,7 +21,7 @@ export const Payments = () => {
       amount={500}
       currency='USD'
       stripeKey={process.env.REACT_APP_STRIPE_KEY}
-      token={token => console.log(token)}
+      token={handleCreateToken}
     >
       <Button
         variant="contained"

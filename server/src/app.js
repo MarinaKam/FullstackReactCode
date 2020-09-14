@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
+const bodyParser = require('body-parser');
 const passport = require('passport');
 const config = require('./services/config');
 require('./models/User');
@@ -10,6 +11,7 @@ require('./services/passport');
 // const PUBLIC_PATH = path.join(__dirname, '../public');
 const app = express();
 
+app.use(bodyParser.json());
 app.use(cookieSession({
   maxAge: 30 * 24 * 60 * 60 * 1000,
   keys: [ config.cookieKey ]
@@ -28,6 +30,7 @@ mongoose
   });
 
 require('./routes/authRoutes')(app);
+require('./routes/billingRoutes')(app);
 
 app.listen(config.PORT, () => {
  console.log(`App is running at http://localhost:${config.PORT} in ${config.NODE_ENV} mode`);

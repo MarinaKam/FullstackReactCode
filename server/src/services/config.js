@@ -10,6 +10,10 @@ const config = {
     callbackURL: '/auth/google/callback',
     proxy: true
   },
+  stripe: {
+    stripeKey: keys.stripeKey,
+    stripeSecretKey: keys.stripeSecretKey
+  },
   mongoURI: keys.mongoURI,
   cookieKey: keys.cookieKey
 };

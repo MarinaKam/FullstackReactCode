@@ -11,7 +11,7 @@ export const reducer = createReduxReducer(initialState, {
     return {
       ...state,
       isFetched: true,
-      user: payload || null
+      user: { ...state?.user, ...payload } || null
     };
   }
 });
