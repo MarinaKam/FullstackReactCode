@@ -1,9 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
+import { Box, AppBar, Toolbar, Button, Link } from '@material-ui/core';
 import { mdiGoogle } from '@mdi/js';
 import { Icon } from '@mdi/react';
-import { Box, AppBar, Toolbar, Typography, Button, Link } from '@material-ui/core';
+import { Payments } from '../Payments';
 import { SvgIcon } from '../SvgIcon';
 
 export const Layout = ({ children }) => {
@@ -35,14 +36,21 @@ export const Layout = ({ children }) => {
               Login with Google
             </Button>
           :
-            <Button
-              color="inherit"
-              component={Link}
-              href="/api/logout"
-              startIcon={<SvgIcon><Icon path={mdiGoogle} /></SvgIcon>}
-            >
-              Log out
-            </Button>
+            <>
+              <Box mx={2}>
+                <Payments />
+              </Box>
+
+              <Button
+                color="inherit"
+                component={Link}
+                underline="none"
+                href="/api/logout"
+                startIcon={<SvgIcon><Icon path={mdiGoogle} /></SvgIcon>}
+              >
+                Log out
+              </Button>
+            </>
           }
         </Toolbar>
       </AppBar>
