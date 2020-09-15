@@ -6,6 +6,7 @@ const passport = require('passport');
 const config = require('./services/config');
 const path = require('path');
 require('./models/User');
+require('./models/Survey');
 require('./services/passport');
 
 const CLIENT_BUILD_PATH = path.join(__dirname, '../../client/build');
@@ -30,6 +31,7 @@ mongoose
 
 require('./routes/authRoutes')(app);
 require('./routes/billingRoutes')(app);
+require('./routes/surveyRoutes')(app);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(PUBLIC_PATH));
