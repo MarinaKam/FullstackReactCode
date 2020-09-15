@@ -14,10 +14,6 @@ module.exports = (app) => {
     res.redirect('/');
   });
 
-  app.get('/', (req, res) => {
-    res.send('hello from the other side');
-  });
-
   app.get('/api/current-user', (req, res) => {
     res.send(req.user);
   });
