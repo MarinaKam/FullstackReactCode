@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { SnackbarProvider } from 'notistack';
 import { ThemeProvider } from '@material-ui/styles';
 import { createMuiTheme, CssBaseline } from '@material-ui/core';
 import { fetchUser } from '../store/auth/operations';
@@ -25,13 +26,21 @@ export const App = () => {
 
       <BrowserRouter>
         <ErrorBoundary>
-          <Layout>
-            <Switch>
-              <Route exact path="/" component={Landing}/>
-              <Route exact path="/surveys" component={Dashboard}/>
-              <Route path="/surveys/new" component={SurveyNew}/>
-            </Switch>
-          </Layout>
+          <SnackbarProvider
+            maxSnack={3}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right"
+            }}
+          >
+            <Layout>
+              <Switch>
+                <Route exact path="/" component={Landing}/>
+                <Route exact path="/surveys" component={Dashboard}/>
+                <Route path="/surveys/new" component={SurveyNew}/>
+              </Switch>
+            </Layout>
+          </SnackbarProvider>
         </ErrorBoundary>
       </BrowserRouter>
     </ThemeProvider>

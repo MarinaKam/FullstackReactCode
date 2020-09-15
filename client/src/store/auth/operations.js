@@ -7,8 +7,9 @@ export const fetchUser = () => (dispatch) => {
   });
 };
 
-export const createToken = (token) => (dispatch) => {
+export const createToken = (token, enqueueSnackbar) => (dispatch) => {
   return userApi.createToken(token).then((data) => {
     dispatch(createTokenSuccess(data));
-  });
+    enqueueSnackbar('Successfully payed', { variant: 'success' })
+  }).catch((error) => error && enqueueSnackbar('Something went wrang', { variant: 'error' }));
 };

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import StripeCheckout from 'react-stripe-checkout';
+import { useSnackbar } from 'notistack';
 import { Button } from '@material-ui/core';
 import { mdiCreditCardPlusOutline } from '@mdi/js';
 import Icon from '@mdi/react';
@@ -8,10 +9,11 @@ import { createToken } from '../../store/auth/operations';
 import { SvgIcon } from '../SvgIcon';
 
 export const Payments = () => {
+  const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
 
   const handleCreateToken = (token) => {
-    dispatch(createToken(token));
+    dispatch(createToken(token, enqueueSnackbar));
   };
 
   return (
