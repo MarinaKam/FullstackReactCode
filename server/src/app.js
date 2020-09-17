@@ -1,13 +1,13 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cookieSession = require('cookie-session');
-const bodyParser = require('body-parser');
-const passport = require('passport');
-const config = require('./services/config');
-const path = require('path');
-require('./models/User');
-require('./models/Survey');
-require('./services/passport');
+import express from 'express';
+import mongoose from 'mongoose';
+import cookieSession from 'cookie-session';
+import bodyParser from 'body-parser';
+import passport from 'passport';
+import path from 'path';
+import config from './services/config';
+import './models/User';
+import './models/Survey';
+import './services/passport';
 
 const CLIENT_BUILD_PATH = path.join(__dirname, '../../client/build');
 const PUBLIC_PATH = path.join(__dirname, '../public');

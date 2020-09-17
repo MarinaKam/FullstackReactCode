@@ -43,7 +43,7 @@ export const Layout = ({ children }) => {
 
               <Box mr={2}>
                 <Typography variant="body1">
-                  Credits: {user.credits}$
+                  Credits: {user.credits || 0}$
                 </Typography>
               </Box>
 

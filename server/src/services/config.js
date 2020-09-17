@@ -14,6 +14,9 @@ const config = {
     stripeKey: keys.stripeKey,
     stripeSecretKey: keys.stripeSecretKey
   },
+  sendGrid: {
+    sendGridKey: keys.sendGridKey,
+  },
   mongoURI: keys.mongoURI,
   cookieKey: keys.cookieKey
 };
