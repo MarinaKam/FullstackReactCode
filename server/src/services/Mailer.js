@@ -50,5 +50,3 @@ export default class Mailer extends helper.Mail {
     return await this.sgApi.API(request);
   }
 }
-
-// module.exports = Mailer;
