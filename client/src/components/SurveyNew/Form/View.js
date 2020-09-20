@@ -1,6 +1,9 @@
 import React from 'react';
 import { FieldArray, useFormikContext } from 'formik';
 import { Box, Button } from '@material-ui/core';
+import { mdiEmailCheckOutline } from '@mdi/js';
+import Icon from '@mdi/react';
+import { SvgIcon } from '../../SvgIcon';
 import { TextField } from '../../TextField';
 import { Loader } from '../../Loader';
 import { fields } from '../fields';
@@ -31,7 +34,7 @@ export const View = ({ onToggleNext }) => {
                 <TextField
                   disabled
                   disableUnderline
-                  name={`recipients[${i}]`}
+                  name={`recipients[${i}].email`}
                   label="Recipient"
                   margin="dense"
                 />
@@ -41,7 +44,7 @@ export const View = ({ onToggleNext }) => {
         />
       </Box>
 
-      <Box display="flex" alignItems="center" justifyContent="flex-end">
+      <Box display="flex" alignItems="center" justifyContent="flex-end" mt={4}>
         <Box mr={2}>
           <Button color="secondary" onClick={onToggleNext}>
             Back
@@ -54,8 +57,9 @@ export const View = ({ onToggleNext }) => {
               type="submit"
               variant="contained"
               color="primary"
+              endIcon={<SvgIcon><Icon path={mdiEmailCheckOutline} /></SvgIcon>}
             >
-              Save
+              Send Survey
             </Button>
           )}
         />

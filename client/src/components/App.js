@@ -27,10 +27,9 @@ export const App = () => {
       <BrowserRouter>
         <ErrorBoundary>
           <SnackbarProvider
-            maxSnack={3}
             anchorOrigin={{
-              vertical: "top",
-              horizontal: "right"
+              vertical: "bottom",
+              horizontal: "left"
             }}
           >
             <Layout>

@@ -3,11 +3,12 @@ import { FieldArray, useFormikContext } from 'formik';
 import { Box, Button, IconButton, SvgIcon } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import AddIcon from '@material-ui/icons/Add';
+import { Link } from 'react-router-dom';
 import { TextField } from '../../TextField';
 import { fields } from '../fields';
 
 export const Body = ({ onToggleNext }) => {
-  const { values, dirty, errors, isSubmitting, resetForm } = useFormikContext();
+  const { values, dirty, errors, isSubmitting } = useFormikContext();
 
   return (
     <>
@@ -29,7 +30,7 @@ export const Body = ({ onToggleNext }) => {
               {values?.recipients?.map((recipient, i) => (
                 <Box key={i} display="flex" alignItems="center" justifyContent="space-between">
                   <TextField
-                    name={`recipients[${i}]`}
+                    name={`recipients[${i}].email`}
                     label="Recipient"
                     margin="dense"
                   />
@@ -52,7 +53,7 @@ export const Body = ({ onToggleNext }) => {
                   color="primary"
                   size="small"
                   startIcon={<AddIcon />}
-                  onClick={() => push()}
+                  onClick={() => push({ email: null })}
                 >
                   Add recipient
                 </Button>
@@ -62,9 +63,13 @@ export const Body = ({ onToggleNext }) => {
         />
       </Box>
 
-      <Box display="flex" alignItems="center" justifyContent="flex-end">
+      <Box display="flex" alignItems="center" justifyContent="flex-end" mt={4}>
         <Box mr={2}>
-          <Button color="secondary" onClick={resetForm}>
+          <Button
+            color="secondary"
+            component={Link}
+            to="/surveys"
+          >
             Cancel
           </Button>
         </Box>

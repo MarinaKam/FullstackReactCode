@@ -11,6 +11,10 @@ module.exports = (app) => {
     res.send('Thanks for voting!');
   });
 
+  app.get('/api/surveys', (req, res) => {
+    res.send('Surveys');
+  });
+
   app.post('/api/surveys', requireLogin, requireCredits, async (req, res) => {
     const { title, subject, body, recipients } = req.body;
 
@@ -18,7 +22,7 @@ module.exports = (app) => {
       title,
       subject,
       body,
-      recipients: recipients.split(',').map(email => ({ email: email.trim() })),
+      recipients,
       _user: req.user.id,
       dateSent: Date.now()
     });
