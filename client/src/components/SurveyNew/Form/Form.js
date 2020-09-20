@@ -40,7 +40,6 @@ export const Form = () => {
     }
 
     return surveysApi.createSurvey(values).then((data) => {
-      console.log(data);
       dispatch(fetchUser());
       history.push('/surveys');
       enqueueSnackbar('Successfully send', { variant: 'success' });
