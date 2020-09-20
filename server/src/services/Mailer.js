@@ -47,6 +47,8 @@ export default class Mailer extends helper.Mail {
       body: this.toJSON()
     });
 
-    return this.sgApi.API(request);
+    return await this.sgApi.API(request);
   }
 }
+
+// module.exports = Mailer;

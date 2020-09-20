@@ -18,7 +18,8 @@ const config = {
     sendGridKey: keys.sendGridKey,
   },
   mongoURI: keys.mongoURI,
-  cookieKey: keys.cookieKey
+  cookieKey: keys.cookieKey,
+  redirectDomain: keys.redirectDomain
 };
 
 module.exports = config;

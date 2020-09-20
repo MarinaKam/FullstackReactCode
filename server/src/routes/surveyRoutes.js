@@ -1,12 +1,16 @@
-const mongoose = require('mongoose');
-const requireLogin = require('../middlewares/requireLogin');
-const requireCredits = require('../middlewares/requireCredits');
-const Mailer = require('../services/Mailer');
-const surveyTemplate = require('../services/emailTemplates/surveyTemplate');
+import mongoose from 'mongoose';
+import requireLogin from '../middlewares/requireLogin';
+import requireCredits from '../middlewares/requireCredits';
+import surveyTemplate from '../services/emailTemplates/surveyTemplate';
+import Mailer from '../services/Mailer';
 
 const Survey = mongoose.model('surveys');
 
 module.exports = (app) => {
+  app.get('/api/surveys/response', (req, res) => {
+    res.send('Thanks for voting!');
+  });
+
   app.post('/api/surveys', requireLogin, requireCredits, async (req, res) => {
     const { title, subject, body, recipients } = req.body;
 
@@ -21,6 +25,16 @@ module.exports = (app) => {
 
     const mailer = new Mailer(survey, surveyTemplate(survey));
 
-    mailer.send();
+    try {
+      await mailer.send();
+      await survey.save();
+
+      req.user.credits -= 1;
+      const user = await req.user.save();
+
+      res.send(user);
+    } catch (err) {
+      res.status(422).send(err);
+    }
   });
 };
