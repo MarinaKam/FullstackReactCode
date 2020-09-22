@@ -27,7 +27,7 @@ export const TextField = forwardRef(({
   ...props
 }, ref) => {
   const formikFieldProps = withoutFormik ? {} : useFormikField(name);
-  const { isFormikField, fieldProps: [ field = {}, { touched } = {}, { setValue } = {} ] = [], error } = formikFieldProps;
+  const { isFormikField, fieldProps: [ field = {}, , { setValue } = {} ] = [], error } = formikFieldProps;
   const classes = useStyles({ zeroMinWidth });
   const hasIsEditable = typeof isEditable === 'boolean';
 
@@ -52,7 +52,11 @@ export const TextField = forwardRef(({
 
         classes: {
           ...get(InputProps, 'classes', {}),
-          disabled: cn(hasIsEditable && classes.notEditableInput, get(InputProps, 'classes.disabled')),
+          disabled: cn(
+            hasIsEditable && classes.notEditableInput,
+            (disabled && disableUnderline) && classes.disableInput,
+            get(InputProps, 'classes.disabled')
+          ),
           underline: disableUnderline && classes.underline
         }
       }}

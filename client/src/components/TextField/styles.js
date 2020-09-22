@@ -11,6 +11,14 @@ export const styles = ({ palette: { grey }, typography: { pxToRem } }) => ({
     color: `${grey[500]} !important`
   },
 
+  disableInput: {
+    color: 'currentColor !important',
+
+    '&:before': {
+      borderBottom: 'none'
+    }
+  },
+
   underline: {
     '&&&:before': {
       borderBottom: 'none'

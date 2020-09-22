@@ -1,4 +1,7 @@
 import mongoose from 'mongoose';
+import { Path } from 'path-parser';
+import { URL } from 'url';
+import { compact, uniqBy } from 'lodash';
 import requireLogin from '../middlewares/requireLogin';
 import requireCredits from '../middlewares/requireCredits';
 import surveyTemplate from '../services/emailTemplates/surveyTemplate';
@@ -16,7 +19,26 @@ module.exports = (app) => {
   });
 
   app.post('/api/surveys/webhooks', (req, res) => {
-    console.log(req.body);
+    const events = req.body.map(({ email, url }) => {
+      const pathname = new URL(url).pathname;
+      const path = new Path('/api/surveys/:surveyID/:choice');
+      const match = path.test(pathname);
+
+      console.log(email);
+      console.log(match);
+      if (match) {
+        return {
+          email,
+          surveyID: match.surveyID,
+          choice: match.choice
+        };
+      }
+    });
+
+    const compactEvents = compact(events);
+    const uniqueEvents = uniqBy(compactEvents, 'email', 'surveyID');
+
+    console.log(uniqueEvents);
     res.send({});
   });
 
