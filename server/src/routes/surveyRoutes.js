@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import { Path } from 'path-parser';
 import { URL } from 'url';
-import { compact, uniqBy } from 'lodash';
+import { chain } from 'lodash';
 import requireLogin from '../middlewares/requireLogin';
 import requireCredits from '../middlewares/requireCredits';
 import surveyTemplate from '../services/emailTemplates/surveyTemplate';
@@ -10,7 +10,7 @@ import Mailer from '../services/Mailer';
 const Survey = mongoose.model('surveys');
 
 module.exports = (app) => {
-  app.get('/api/surveys/response', (req, res) => {
+  app.get('/api/surveys/:surveyID/:choice', (req, res) => {
     res.send('Thanks for voting!');
   });
 
@@ -19,26 +19,29 @@ module.exports = (app) => {
   });
 
   app.post('/api/surveys/webhooks', (req, res) => {
-    const events = req.body.map(({ email, url }) => {
-      const pathname = new URL(url).pathname;
-      const path = new Path('/api/surveys/:surveyID/:choice');
-      const match = path.test(pathname);
+    const path = new Path('/api/surveys/:surveyID/:choice');
 
-      console.log(email);
-      console.log(match);
-      if (match) {
-        return {
-          email,
-          surveyID: match.surveyID,
-          choice: match.choice
-        };
-      }
-    });
+    chain(req.body).map(({ email,url }) => {
+      const match = path.test(new URL(url).pathname);
 
-    const compactEvents = compact(events);
-    const uniqueEvents = uniqBy(compactEvents, 'email', 'surveyID');
+      return match && {
+        email,
+        surveyID: match.surveyID,
+        choice: match.choice
+      };
+    }).compact().uniqBy('email', 'surveyID').each(({ surveyID, email, choice }) => {
+      Survey.updateOne({
+        _id: surveyID,
+        recipients: {
+          $elemMatch: { email, responded: false }
+        }
+      }, {
+        $inc: { [choice]: 1 },
+        $set: { 'recipients.$.responded': true },
+        lastResponded: new Date()
+      }).exec()
+    }).value();
 
-    console.log(uniqueEvents);
     res.send({});
   });
 
