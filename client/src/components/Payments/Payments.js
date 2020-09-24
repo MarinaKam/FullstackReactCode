@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import StripeCheckout from 'react-stripe-checkout';
 import { useSnackbar } from 'notistack';
-import { Button } from '@material-ui/core';
+import { Button, Tooltip, Typography } from '@material-ui/core';
 import { mdiCreditCardPlusOutline } from '@mdi/js';
 import Icon from '@mdi/react';
 import { createToken } from '../../store/auth/operations';
@@ -25,14 +25,26 @@ export const Payments = () => {
       stripeKey={process.env.REACT_APP_STRIPE_KEY}
       token={handleCreateToken}
     >
-      <Button
-        variant="contained"
-        color="secondary"
-        size="small"
-        startIcon={<SvgIcon><Icon path={mdiCreditCardPlusOutline} /></SvgIcon>}
+      <Tooltip
+        arrow
+        title={
+          <Typography>
+            Just add the dummy card number
+            <br/>
+            <em>4242 4242 4242 4242</em>
+            <br/>
+          </Typography>
+        }
       >
-        Add credits
-      </Button>
+        <Button
+          variant="contained"
+          color="secondary"
+          size="small"
+          startIcon={<SvgIcon><Icon path={mdiCreditCardPlusOutline} /></SvgIcon>}
+        >
+          Add credits
+        </Button>
+      </Tooltip>
     </StripeCheckout>
   );
 };

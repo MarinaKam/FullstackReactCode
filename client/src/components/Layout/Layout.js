@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
-import { Box, AppBar, Toolbar, Button, Link, Typography, Tooltip } from '@material-ui/core';
+import { Box, AppBar, Toolbar, Button, Link, Typography } from '@material-ui/core';
 import { mdiGoogle } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import { Payments } from '../Payments';
@@ -37,21 +37,9 @@ export const Layout = ({ children }) => {
             </Button>
           :
             <>
-              <Tooltip
-                arrow
-                title={
-                  <Typography>
-                    Just add the dummy card number
-                    <br/>
-                    <em>4242 4242 4242 4242</em>
-                    <br/>
-                  </Typography>
-                }
-              >
-                <Box mx={2}>
-                  <Payments />
-                </Box>
-              </Tooltip>
+              <Box mx={2}>
+                <Payments />
+              </Box>
 
               <Box mr={2}>
                 <Typography variant="body1">
