@@ -31,7 +31,7 @@ export const Dashboard = () => {
     >
       <Loader p={3} loading={!isFetched} render={
         () => (!surveys.length ?
-          <Box>
+          <Box p={3}>
             <Typography align="center">No surveys found</Typography>
           </Box>
         :

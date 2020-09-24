@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Formik } from 'formik';
 import { useSnackbar } from 'notistack';
@@ -6,6 +6,7 @@ import { makeStyles, Box, Paper } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import * as surveysApi from '../../../api';
 import { fetchUser } from '../../../store/auth/operations';
+import { SurveysContext } from '../SurveysContext';
 import { validationSchema } from '../validationSchema';
 import { Body } from './Body';
 import { View } from './View';
@@ -25,6 +26,7 @@ const useStyles = makeStyles(styles);
 export const Form = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const { fetchSurveys } = useContext(SurveysContext);
   const history = useHistory();
 
   const { enqueueSnackbar } = useSnackbar();
@@ -39,8 +41,9 @@ export const Form = () => {
       return;
     }
 
-    return surveysApi.createSurvey(values).then((data) => {
+    return surveysApi.createSurvey(values).then(() => {
       dispatch(fetchUser());
+      fetchSurveys();
       history.push('/surveys');
       enqueueSnackbar('Successfully send', { variant: 'success' });
     }).catch(({ data: { message }, ...error }) => {
