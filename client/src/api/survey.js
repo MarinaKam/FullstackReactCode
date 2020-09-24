@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const fetchSurvey = () => {
+export const fetchSurveys = () => {
   return axios.get('/api/surveys')
     .then(({ data }) => data)
     .catch((error) => { throw error; });

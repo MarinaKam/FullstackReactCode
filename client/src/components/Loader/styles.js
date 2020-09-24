@@ -1,12 +1,6 @@
 export const DEFAULT_SPINNER_SIZE = 40;
 export const DEFAULT_SPINNER_THICKNESS = 3.6;
 
-const getSpinnerThickness = ({ size = DEFAULT_SPINNER_SIZE, thickness = DEFAULT_SPINNER_THICKNESS } = {}) => {
-  const percents = 100 - (thickness / (size / 100));
-
-  return size - size / 100 * percents;
-};
-
 export const styles = ({ palette }) => ({
   root: {
     position: 'relative',
@@ -41,9 +35,6 @@ export const styles = ({ palette }) => ({
   },
 
   loader: {
-    boxShadow: ({ spinnerSize, thickness }) => {
-      return `inset 0 0 0 ${getSpinnerThickness({ size: spinnerSize, thickness })}px rgba(0, 0, 0, 0.15)`;
-    },
-    color: ({ color }) => palette[color] && palette[color].main,
+    color: ({ color }) => palette[color] && palette[color].main
   }
 });

@@ -10,6 +10,7 @@ import { Dashboard } from './Dashboard';
 import { Landing } from './Landing';
 import { Layout } from './Layout';
 import { SurveyNew } from './SurveyNew';
+import { SurveysProvider } from './SurveyNew/SurveysContext';
 
 const theme = createMuiTheme();
 
@@ -33,11 +34,13 @@ export const App = () => {
             }}
           >
             <Layout>
-              <Switch>
-                <Route exact path="/" component={Landing}/>
-                <Route exact path="/surveys" component={Dashboard}/>
-                <Route path="/surveys/new" component={SurveyNew}/>
-              </Switch>
+              <SurveysProvider>
+                <Switch>
+                  <Route exact path="/" component={Landing}/>
+                  <Route exact path="/surveys" component={Dashboard}/>
+                  <Route path="/surveys/new" component={SurveyNew}/>
+                </Switch>
+              </SurveysProvider>
             </Layout>
           </SnackbarProvider>
         </ErrorBoundary>
