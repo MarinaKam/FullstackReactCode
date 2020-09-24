@@ -15,9 +15,13 @@ module.exports = (app) => {
   });
 
   app.get('/api/surveys', requireLogin, async (req, res) => {
-    const surveys = await Survey.find({ _user: req.user.id }).select({ recipients: false });
+    try {
+      const surveys = await Survey.find({ _user: req.user.id }).select({ recipients: false });
 
-    res.send(surveys);
+      res.send(surveys);
+    } catch (err) {
+      res.status(401).send(err);
+    }
   });
 
   app.post('/api/surveys/webhooks', (req, res) => {

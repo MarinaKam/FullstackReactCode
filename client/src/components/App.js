@@ -40,13 +40,14 @@ export const App = () => {
             }}
           >
             <Layout>
-              <SurveysProvider>
-                <Switch>
-                  <Route exact path="/" component={Landing}/>
+              <Switch>
+                <Route exact path="/" component={Landing}/>
+
+                <SurveysProvider>
                   <Route exact path="/surveys" component={Dashboard}/>
                   <Route path="/surveys/new" component={SurveyNew}/>
-                </Switch>
-              </SurveysProvider>
+                </SurveysProvider>
+              </Switch>
             </Layout>
           </SnackbarProvider>
         </ErrorBoundary>

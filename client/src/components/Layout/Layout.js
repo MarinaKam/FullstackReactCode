@@ -28,9 +28,7 @@ export const Layout = ({ children }) => {
 
           {!user ?
             <Button
-              color="secondary"
               underline="none"
-              variant="outlined"
               component={Link}
               href="/auth/google"
               startIcon={<SvgIcon><Icon path={mdiGoogle} /></SvgIcon>}
@@ -50,9 +48,7 @@ export const Layout = ({ children }) => {
               </Box>
 
               <Button
-                color="secondary"
                 component={Link}
-                variant="outlined"
                 underline="none"
                 href="/api/logout"
                 startIcon={<SvgIcon><Icon path={mdiGoogle} /></SvgIcon>}

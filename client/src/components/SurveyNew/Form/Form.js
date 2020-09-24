@@ -28,7 +28,6 @@ export const Form = () => {
   const dispatch = useDispatch();
   const { fetchSurveys } = useContext(SurveysContext);
   const history = useHistory();
-
   const { enqueueSnackbar } = useSnackbar();
   const [ isNext, setIsNext ] = useState(false);
 

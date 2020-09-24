@@ -3,7 +3,7 @@ import axios from 'axios';
 export const fetchSurveys = () => {
   return axios.get('/api/surveys')
     .then(({ data }) => data)
-    .catch((error) => { throw error; });
+    .catch((error) => { throw error.response; });
 };
 
 export const createSurvey = (survey) => {
