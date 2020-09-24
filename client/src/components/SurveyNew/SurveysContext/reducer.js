@@ -24,5 +24,5 @@ export const reducer = createHookReducer({
       ...state,
       surveys: [ ...surveys,  payload ]
     }
-  },
+  }
 });

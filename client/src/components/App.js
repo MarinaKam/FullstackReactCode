@@ -5,12 +5,11 @@ import { SnackbarProvider } from 'notistack';
 import { ThemeProvider } from '@material-ui/styles';
 import { createMuiTheme, CssBaseline } from '@material-ui/core';
 import { fetchUser } from '../store/auth/operations';
+import { SurveyNew, SurveysProvider } from './SurveyNew';
 import { ErrorBoundary } from './ErrorBoundary';
 import { Dashboard } from './Dashboard';
 import { Landing } from './Landing';
 import { Layout } from './Layout';
-import { SurveyNew } from './SurveyNew';
-import { SurveysProvider } from './SurveyNew/SurveysContext';
 
 const theme = createMuiTheme();
 
