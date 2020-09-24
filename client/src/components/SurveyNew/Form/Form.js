@@ -46,10 +46,10 @@ export const Form = () => {
       fetchSurveys();
       history.push('/surveys');
       enqueueSnackbar('Successfully send', { variant: 'success' });
-    }).catch(({ data: { message }, ...error }) => {
+    }).catch(({ data: { error } }) => {
       if (error) {
         setErrors(error);
-        enqueueSnackbar(message || 'Something went wrong', { variant: 'error' });
+        enqueueSnackbar(error || 'Something went wrong', { variant: 'error' });
       }
     });
   }
