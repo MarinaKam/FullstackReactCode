@@ -29,6 +29,7 @@ export const Layout = ({ children }) => {
           {!user ?
             <Button
               color="inherit"
+              underline="none"
               component={Link}
               href="/auth/google"
               startIcon={<SvgIcon><Icon path={mdiGoogle} /></SvgIcon>}
@@ -47,15 +48,17 @@ export const Layout = ({ children }) => {
                 </Typography>
               </Box>
 
-              <Button
-                color="inherit"
-                component={Link}
-                underline="none"
-                href="/api/logout"
-                startIcon={<SvgIcon><Icon path={mdiGoogle} /></SvgIcon>}
-              >
-                Log out
-              </Button>
+              <Box color="warning.main">
+                <Button
+                  color="inherit"
+                  component={Link}
+                  underline="none"
+                  href="/api/logout"
+                  startIcon={<SvgIcon><Icon path={mdiGoogle} /></SvgIcon>}
+                >
+                  Log out
+                </Button>
+              </Box>
             </>
           }
         </Toolbar>

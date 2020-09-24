@@ -11,7 +11,14 @@ import { Dashboard } from './Dashboard';
 import { Landing } from './Landing';
 import { Layout } from './Layout';
 
-const theme = createMuiTheme();
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#2196f3',
+      contrastText: '#fff'
+    }
+  }
+});
 
 export const App = () => {
   const dispatch = useDispatch();
