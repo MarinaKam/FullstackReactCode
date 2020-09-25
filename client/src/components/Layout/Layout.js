@@ -1,13 +1,25 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
-import { Box, AppBar, Toolbar, Button, Link, Typography } from '@material-ui/core';
+import { makeStyles, Box, AppBar, Toolbar, Button, Link, Typography } from '@material-ui/core';
 import { mdiGoogle } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import { Payments } from '../Payments';
 import { SvgIcon } from '../SvgIcon';
 
+const styles = ({ palette }) => ({
+  logoutBtn: {
+    color: palette.warning.main
+  },
+  loginBtn: {
+    color: palette.common.white
+  }
+});
+
+const useStyles = makeStyles(styles);
+
 export const Layout = ({ children }) => {
+  const classes = useStyles();
   const user = useSelector(({ auth }) => auth.user);
 
   return (
@@ -31,6 +43,7 @@ export const Layout = ({ children }) => {
               underline="none"
               component={Link}
               href="/auth/google"
+              className={classes.loginBtn}
               startIcon={<SvgIcon><Icon path={mdiGoogle} /></SvgIcon>}
             >
               Login with Google
@@ -51,6 +64,7 @@ export const Layout = ({ children }) => {
                 component={Link}
                 underline="none"
                 href="/api/logout"
+                className={classes.logoutBtn}
                 startIcon={<SvgIcon><Icon path={mdiGoogle} /></SvgIcon>}
               >
                 Log out
